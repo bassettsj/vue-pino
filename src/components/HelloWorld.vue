@@ -34,10 +34,17 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import log from '../log';
+
+const helloLog = log.child({ name: 'HelloWorld' });
 
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
+  mounted() {
+    helloLog.info('mounted!');
+    throw new Error('yikes');
+  }
 }
 </script>
 
